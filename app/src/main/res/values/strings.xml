@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Thread Test</string>
+    <string name="count">0초</string>
+    <string name="start">진행시작</string>
+    <string name="stop">진행중단</string>
+    <string name="percent">진행률: 0%</string>
+    <string name="pot">pot</string>
+</resources>
