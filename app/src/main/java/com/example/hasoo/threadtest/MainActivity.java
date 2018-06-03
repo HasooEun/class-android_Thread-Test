@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    int count = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                String text = count + "초";
+                String text = msg.what+ "초";
                 TextView textView = findViewById(R.id.textView);
                 textView.setText(text);
             }
@@ -33,9 +32,8 @@ public class MainActivity extends AppCompatActivity {
                 super.run();
                 for(int i = 0; i<10; i++){
                     try {
+                        mainHandler.sendEmptyMessage(i);
                         Thread.sleep(1000);
-                        count++;
-                        mainHandler.sendEmptyMessage(0);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -52,6 +50,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 3000);
+        }, 5000);
     }
 }

@@ -18,7 +18,7 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        setTitle("Activity 2");
+        setTitle("AsyncTask Test");
 
         final int value = 0;
         final TextView textView = findViewById(R.id.textView2);
@@ -41,6 +41,12 @@ public class Main2Activity extends AppCompatActivity {
                 myTask.cancel(true);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        myTask.cancel(true);
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -85,7 +91,7 @@ public class Main2Activity extends AppCompatActivity {
             super.onProgressUpdate(values);
             progressBar.setProgress(values[0]);
             String progress = "진행률: " + values[0].toString() + "%";
-            textView.setTextColor(Color.rgb(255,0,0));
+            textView.setTextColor(Color.RED);
             textView.setText(progress);
         }
 
@@ -93,14 +99,14 @@ public class Main2Activity extends AppCompatActivity {
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
             progressBar.setProgress(100);
-            textView.setTextColor(Color.rgb(200, 200, 200));
+            textView.setTextColor(Color.GRAY);
             textView.setText("완료되었습니다.");
         }
 
         @Override
         protected void onCancelled() {
             super.onCancelled();
-            textView.setTextColor(Color.rgb(0, 0, 255));
+            textView.setTextColor(Color.BLUE);
             textView.setText("취소되었습니다.");
         }
     }
